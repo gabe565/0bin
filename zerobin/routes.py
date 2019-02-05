@@ -145,6 +145,10 @@ def error404(code):
 def server_static(filename):
     return static_file(filename, root=settings.STATIC_FILES_ROOT)
 
+@app.route('/robots.txt')
+def server_robots():
+    return static_file('robots.txt', root=settings.STATIC_FILES_ROOT)
+
 
 def get_app(debug=None, settings_file='',
             compressed_static=None, settings=settings):
