@@ -118,7 +118,7 @@ def display_paste(paste_id):
                 keep_alive = paste.expiration.split('#')[1]
                 keep_alive = datetime.strptime(keep_alive,
                                                '%Y-%m-%d %H:%M:%S.%f')
-                keep_alive = now < keep_alive + timedelta(seconds=10)
+                keep_alive = now < keep_alive + timedelta(seconds=settings.BURN_ACTIVATION_SECONDS)
             except IndexError:
                 keep_alive = False
             if not keep_alive:
