@@ -121,6 +121,9 @@ def display_paste(paste_id):
                 keep_alive = now < keep_alive + timedelta(seconds=settings.BURN_ACTIVATION_SECONDS)
             except IndexError:
                 keep_alive = False
+            if (settings.KEEP_ALIVE_USER_AGENTS and
+                    request.headers.get('User-Agent') in settings.KEEP_ALIVE_USER_AGENTS):
+                keep_alive = True
             if not keep_alive:
                 paste.delete()
 
